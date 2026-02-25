@@ -60,14 +60,14 @@ write_matrix() {
     local file=$2
     local prec=$3
 
-    > "$file"
+    : > "$file"
 
     for ((i=0; i<n; i++)); do
         line=""
 
         for ((j=0; j<n; j++)); do
             val=$(LC_NUMERIC=C printf "%.${prec}f" "${mat[$i,$j]}")
-            if [ $j -eq 0 ]; then
+            if [ "$j" -eq 0 ]; then
                 line="$val"
             else
                 line="$line,$val"
