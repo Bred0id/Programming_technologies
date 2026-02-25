@@ -76,6 +76,10 @@ find "$DIR" -type f -name "*.log" | while IFS= read -r logfile; do
             continue
         fi
 
+        if [[ ${args[4]} =~ ^0[0-9]+$ ]]; then
+            continue
+        fi
+
         if [ $nargs -eq 6 ]; then
             if [[ ! ${args[5]} =~ ^[a-zA-Z_]*$ ]]; then
                 continue
