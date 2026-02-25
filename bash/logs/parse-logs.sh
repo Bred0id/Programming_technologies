@@ -68,7 +68,7 @@ find "$DIR" -type f -name "*.log" | while IFS= read -r logfile; do
             continue
         fi
 
-        if [[ ! ${args[3]} =~ ^[0-9]{2}:[0-9]{2}:[0-9]{4}$ ]] || ! correct_date "${args[3]}"; then
+        if [[ ! ${args[3]} =~ ^[0-9]{2}:[0-9]{2}:[0-9]{4}$ ]]; then
             continue
         fi
 
