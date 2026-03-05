@@ -47,49 +47,9 @@ done
 tmpfile=$(mktemp)
 trap "rm -f $tmpfile" EXIT
 
-find "$DIR" -type f -name "*.log" | while IFS= read -r logfile; do
-    while IFS= read -r line || [[ -n "$line" ]]; do
-        read -ra args <<< "$line"
-        nargs=${#args[@]}
+regularka='^\[ (INFO|DEBUG|WARNING|ERROR) \][[:space:]][0-9]{2}:[0-9]{2}:[0-9]{4}[[:space:]](0|[1-9][0-9]*)([[:space:]][a-zA-Z_]+)?$'
 
-        if [[ $nargs -ne 5 && $nargs -ne 6 ]]; then
-            continue
-        fi
-
-        if [ "${args[0]}" != "[" ]; then
-            continue
-        fi
-
-        if [[ ! ${args[1]} =~ ^(INFO|DEBUG|WARNING|ERROR)$ ]]; then
-            continue
-        fi
-
-        if [ "${args[2]}" != "]" ]; then
-            continue
-        fi
-
-        if [[ ! ${args[3]} =~ ^[0-9]{2}:[0-9]{2}:[0-9]{4}$ ]]; then
-            continue
-        fi
-
-        if [[ ! ${args[4]} =~ ^[0-9]+$ ]]; then
-            continue
-        fi
-
-        if [[ ${args[4]} =~ ^0[0-9]+$ ]]; then
-            continue
-        fi
-
-        if [ $nargs -eq 6 ]; then
-            if [[ ! ${args[5]} =~ ^[a-zA-Z_]*$ ]]; then
-                continue
-            fi
-        fi
-
-        echo "$line" >> "$tmpfile"
-
-    done < "$logfile"
-done
+grep -rhE --include="*.log" "$regularka" "$DIR" > "$tmpfile"
 
 if [ -s "$tmpfile" ]; then
     if [ "$ORDER" = "up" ]; then
