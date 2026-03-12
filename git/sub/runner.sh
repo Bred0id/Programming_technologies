@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd server
+cd server || exit 1
 
 ./service-init.sh
 trap "./service-shutdown.sh" EXIT
