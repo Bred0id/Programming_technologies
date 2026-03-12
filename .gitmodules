@@ -1,0 +1,3 @@
+[submodule "server"]
+	path = server
+	url = https://gitlab.com/atpd/progtech/git-submodules.git
