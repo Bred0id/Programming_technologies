@@ -4,14 +4,14 @@
 
 0. Сделайте ветку pybind в Вашем репозитории. В ней организуйте структуру:
 
-pybind/
-    test_time_memory.py
-    test_results.md
-    fastdict/
-        CMakeLists.txt
-        __init__.py
-        (C++ исходники)
-    build.sh (или аналогичный скрипт сборки)
+pybind/  
+    test_time_memory.py  
+    test_results.md  
+    fastdict/  
+        CMakeLists.txt  
+        __init__.py  
+        (C++ исходники)  
+        build.sh (или аналогичный скрипт сборки)  
 
 1. Выберите структуру данных:
 
@@ -29,15 +29,15 @@ pybind/
 
 3. Добавьте весь необходимый функционал, чтобы Splay-дерево (теперь уже FastDict) имело интерфейс словаря (collections.abc.MutableMapping):
 
-• __getitem__
-• __setitem__
-• __delitem__
-• __iter__
-• __len__
-• __contains__
-• keys()
-• items()
-• values()
+• `__getitem__`  
+• `__setitem__`  
+• `__delitem__`  
+• `__iter__`  
+• `__len__`  
+• `__contains__`  
+• `keys()`  
+• `items()`  
+• `values()`  
 
 Требования к объектам:
 
