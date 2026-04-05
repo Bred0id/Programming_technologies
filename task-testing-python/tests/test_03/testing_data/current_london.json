@@ -1,0 +1,25 @@
+[
+  {
+    "LocalObservationDateTime": "2026-04-05T00:38:00+01:00",
+    "EpochTime": 1775345880,
+    "WeatherText": "Cloudy",
+    "WeatherIcon": 7,
+    "HasPrecipitation": false,
+    "PrecipitationType": null,
+    "IsDayTime": false,
+    "Temperature": {
+      "Metric": {
+        "Value": 15.0,
+        "Unit": "C",
+        "UnitType": 17
+      },
+      "Imperial": {
+        "Value": 54.0,
+        "Unit": "F",
+        "UnitType": 18
+      }
+    },
+    "MobileLink": "http://www.accuweather.com/en/gb/london/ec4a-2/current-weather/328328?lang=en-us",
+    "Link": "http://www.accuweather.com/en/gb/london/ec4a-2/current-weather/328328?lang=en-us"
+  }
+]
