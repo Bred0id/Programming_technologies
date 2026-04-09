@@ -1,12 +1,12 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
-from enum import StrEnum
+from enum import Enum
 import time
 
 app = FastAPI()
 
-class DogType(StrEnum):
+class DogType(str, Enum):
     terrier = "terrier"
     bulldog = "bulldog"
     dalmatian = "dalmatian"
