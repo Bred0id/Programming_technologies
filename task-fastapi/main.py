@@ -53,8 +53,8 @@ def get_timestamp():
 def add_dog(new_dog: Dog):
     global max_pk
     if new_dog.pk is None:
-        max_pk += 1
         new_dog.pk = max_pk
+        max_pk += 1
     for dog in dogs:
         if new_dog.pk == dog.pk:
             raise HTTPException(status_code=409, detail="Dog with this pk already exists")
