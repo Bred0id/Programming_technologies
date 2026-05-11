@@ -1,0 +1,50 @@
+image: python:3.9-slim
+
+stages:
+  - install
+  - test
+
+InstallRequirements:
+  stage: install
+  tags:
+    - common
+    - cpu
+  script:
+    - cd task-testing-python
+    - python -m venv .venv
+    - . .venv/bin/activate
+    - pip install -r requirements.txt
+    - pip install flake8
+  artifacts:
+    paths:
+      - task-testing-python/.venv
+
+TestCode:
+  stage: test
+  tags:
+    - common
+    - cpu
+  needs:
+    - job: InstallRequirements
+      artifacts: true
+  script:
+    - cd task-testing-python
+    - . .venv/bin/activate
+    - PYTHONPATH=src pytest tests --junitxml=report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: task-testing-python/report.xml
+
+LintCode:
+  stage: test
+  tags:
+    - common
+    - cpu
+  needs:
+    - job: InstallRequirements
+      artifacts: true
+  script:
+    - cd task-testing-python
+    - . .venv/bin/activate
+    - flake8 main.py src tests
